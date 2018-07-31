@@ -3,17 +3,51 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://ljosef.github.io/contact/</loc>
+    <lastmod>2018-08-01T00:39:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://ljosef.github.io/about/</loc>
+    <lastmod>2018-08-01T00:38:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://ljosef.github.io/kubernetes-best-practices-terminating-with-grace/</loc>
+    <lastmod>2018-07-31T00:18:36+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://ljosef.github.io/kubernetes-best-practices-how-and-why-to-build-small-container-images/</loc>
+    <lastmod>2018-07-31T00:08:53+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://ljosef.github.io/tags/about/</loc>
+    <lastmod>2018-08-01T00:38:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://ljosef.github.io/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>http://ljosef.github.io/tags/docker-images/</loc>
+    <lastmod>2018-07-31T00:08:53+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://ljosef.github.io/tags/</loc>
+    <lastmod>2018-08-01T00:38:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://ljosef.github.io/</loc>
+    <lastmod>2018-08-01T00:39:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   

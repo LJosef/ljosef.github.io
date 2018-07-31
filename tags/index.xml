@@ -1,14 +1,34 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on ljosef&#39;s blog</title>
+    <title>Tags on stay_here</title>
     <link>http://ljosef.github.io/tags/</link>
-    <description>Recent content in Tags on ljosef&#39;s blog</description>
+    <description>Recent content in Tags on stay_here</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>Copyright@yulianglu2010@gmail.com</copyright>
+    <lastBuildDate>Wed, 01 Aug 2018 00:38:00 +0800</lastBuildDate>
     
 	<atom:link href="http://ljosef.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>About</title>
+      <link>http://ljosef.github.io/tags/about/</link>
+      <pubDate>Wed, 01 Aug 2018 00:38:00 +0800</pubDate>
+      
+      <guid>http://ljosef.github.io/tags/about/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker Images</title>
+      <link>http://ljosef.github.io/tags/docker-images/</link>
+      <pubDate>Tue, 31 Jul 2018 00:08:53 +0800</pubDate>
+      
+      <guid>http://ljosef.github.io/tags/docker-images/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

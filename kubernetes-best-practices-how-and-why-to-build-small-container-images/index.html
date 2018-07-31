@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Kubernetes Best Practices How and Why to Build Small Container Images" />
+<meta property="og:description" content="By Sandeep Dinesh, Developer Advocate
+Editor’s note: Today marks the first installment in a seven-part video and blog series from Google Developer Advocate Sandeep Dinesh on how to get the most out of your Kubernetes environment. Today he tackles the theory and practicalities of keeping your container images as small as possible.
+Docker makes building containers a breeze. Just put a standard Dockerfile into your folder, run the docker ‘build’ command, and shazam!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://ljosef.github.io/kubernetes-best-practices-how-and-why-to-build-small-container-images/" />
+
+
+
+<meta property="article:published_time" content="2018-07-31T00:08:53&#43;08:00"/>
+
+<meta property="article:modified_time" content="2018-07-31T00:08:53&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Kubernetes Best Practices How and Why to Build Small Container Images"/>
+<meta name="twitter:description" content="By Sandeep Dinesh, Developer Advocate
+Editor’s note: Today marks the first installment in a seven-part video and blog series from Google Developer Advocate Sandeep Dinesh on how to get the most out of your Kubernetes environment. Today he tackles the theory and practicalities of keeping your container images as small as possible.
+Docker makes building containers a breeze. Just put a standard Dockerfile into your folder, run the docker ‘build’ command, and shazam!"/>
+
+
+
+    <link rel="canonical" href="http://ljosef.github.io/kubernetes-best-practices-how-and-why-to-build-small-container-images/">
+
+    <title>
+      
+        Kubernetes Best Practices How and Why to Build Small Container Images | stay_here
+      
+    </title>
+
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+    <link href="http://ljosef.github.iocss/style.css" rel="stylesheet">
+
+    
+
+    
+
+    
+  </head>
+  <body>
+    
+      <header class="blog-header">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a class="navbar-brand" href="/">
+            stay_here
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <ul class="navbar-nav">
+                
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/">Home</a>
+                    
+                </li>
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/about/">About</a>
+                    
+                </li>
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/contact/">Contact</a>
+                    
+                </li>
+                
+            </ul>
+            
+        </div>
+    </nav>
+</header>
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-8 blog-main">
+
+          
+
+<header>
+    <h2 class="blog-post-title">
+        <a class="text-dark" href="/kubernetes-best-practices-how-and-why-to-build-small-container-images/">Kubernetes Best Practices How and Why to Build Small Container Images</a>
+    </h2>
+    
+
+
+<div class="blog-post-date text-secondary">
+    
+        Jul 31, 2018
+    
+    
+</div>
+
+    
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="badge badge-primary" href="/tags/docker-images">docker-images</a>
+    
+</div>
+
+    
+    <hr>
+</header>
+<article class="blog-post">
+    
+
+<p>By Sandeep Dinesh, Developer Advocate</p>
+
+<p>Editor’s note: Today marks the first installment in a seven-part video and blog series from Google Developer Advocate Sandeep Dinesh on how to get the most out of your Kubernetes environment. Today he tackles the theory and practicalities of keeping your container images as small as possible.</p>
+
+<p>Docker makes building containers a breeze. Just put a standard Dockerfile into your folder, run the docker ‘build’ command, and shazam! Your container image is built!</p>
+
+<p>The downside of this simplicity is that it’s easy to build huge containers full of things you don’t need—including potential security holes.</p>
+
+<p>In this episode of “Kubernetes Best Practices,” let’s explore how to create production-ready container images using Alpine Linux and the Docker builder pattern, and then run some benchmarks that can determine how these containers perform inside your Kubernetes cluster.</p>
+
+<p>The process for creating containers images is different depending on whether you are using an interpreted language or a compiled language. Let’s dive in!</p>
+
+<h2 id="containerizing-interpreted-languages">Containerizing interpreted languages</h2>
+
+<p>Interpreted languages, such as Ruby, Python, Node.js, PHP and others send source code through an interpreter that runs the code. This gives you the benefit of skipping the compilation step, but has the downside of requiring you to ship the interpreter along with the code.</p>
+
+<p>Luckily, most of these languages offer pre-built Docker containers that include a lightweight environment that allows you to run much smaller containers.</p>
+
+<p>Let’s take a Node.js application and containerize it. First, let’s use the “node:onbuild” Docker image as the base. The “onbuild” version of a Docker container pre-packages everything you need to run so you don’t need to perform a lot of configuration to get things working. This means the Dockerfile is very simple (only two lines!). But you pay the price in terms of disk size— almost 700MB!</p>
+
+<pre><code>FROM node:onbuild
+EXPOSE 8080
+</code></pre>
+
+<p><img src="https://ws1.sinaimg.cn/large/5c7eca16ly1fttemjf2wvj20sn029aa1.jpg" alt="" /></p>
+
+<p>By using a smaller base image such as Alpine, you can significantly cut down on the size of your container. Alpine Linux is a small and lightweight Linux distribution that is very popular with Docker users because it’s compatible with a lot of apps, while still keeping containers small.</p>
+
+<p>Luckily, there is an official Alpine image for Node.js (as well as other popular languages) that has everything you need. Unlike the default “node” Docker image, “node:alpine” removes many files and programs, leaving only enough to run your app.</p>
+
+<p>The Alpine Linux-based Dockerfile is a bit more complicated to create as you have to run a few commands that the onbuild image otherwise does for you.</p>
+
+<pre><code>FROM node:alpine
+WORKDIR /app
+COPY package.json /app/package.json
+RUN npm install --production
+COPY server.js /app/server.js
+EXPOSE 8080
+CMD npm start
+</code></pre>
+
+<p>But, it’s worth it, because the resulting image is much smaller at only 65 MB!</p>
+
+<p><img src="https://ws1.sinaimg.cn/large/5c7eca16ly1fttf11svt4j20og01c0sm.jpg" alt="" /></p>
+
+<h3 id="containerizing-compiled-languages">Containerizing compiled languages</h3>
+
+<p>Compiled languages such as Go, C, C++, Rust, Haskell and others create binaries that can run without many external dependencies. This means you can build the binary ahead of time and ship it into production without having to ship the tools to create the binary such as the compiler.</p>
+
+<p>With Docker’s support for <a href="https://docs.docker.com/engine/userguide/eng-image/multistage-build/">multi-step builds</a>, you can easily ship just the binary and a minimal amount of scaffolding. Let’s learn how.</p>
+
+<p>Let’s take a <a href="https://github.com/golang/example/tree/master/outyet">Go application</a> and containerize it using this pattern. First, let’s use the “golang:onbuild” Docker image as the base. As before, the Dockerfile is only two lines, but again you pay the price in terms of disk size—over 700MB!</p>
+
+<pre><code>FROM golang:onbuild
+EXPOSE 8080
+</code></pre>
+
+<p><img src="https://ws1.sinaimg.cn/large/5c7eca16ly1fttf8t9graj20so02bq2w.jpg" alt="" /></p>
+
+<p>The next step is to use a slimmer base image, in this case the “golang:alpine” image. So far, this is the same process we followed for an interpreted language.</p>
+
+<p>Again, creating the Dockerfile with an Alpine base image is a bit more complicated as you have to run a few commands that the onbuild image did for you.</p>
+
+<pre><code>FROM golang:alpine
+WORKDIR /app
+ADD . /app
+RUN cd /app &amp;&amp; go build -o goapp
+EXPOSE 8080
+ENTRYPOINT ./goapp
+</code></pre>
+
+<p>But again, the resulting image is much smaller, weighing in at only 256MB!</p>
+
+<p><img src="https://ws1.sinaimg.cn/large/5c7eca16ly1ftthiz2j06j20sm02ydfv.jpg" alt="" /></p>
+
+<p>However, we can make the image even smaller: You don’t need any of the compilers or other build and debug tools that Go comes with, so you can remove them from the final container.</p>
+
+<p>Let’s use a multi-step build to take the binary created by the golang:alpine container and package it by itself.</p>
+
+<pre><code>FROM golang:alpine AS build-env
+WORKDIR /app
+ADD . /app
+RUN cd /app &amp;&amp; go build -o goapp
+
+FROM alpine
+RUN apk update &amp;&amp; \
+   apk add ca-certificates &amp;&amp; \
+   update-ca-certificates &amp;&amp; \
+   rm -rf /var/cache/apk/*
+WORKDIR /app
+COPY --from=build-env /app/goapp /app
+EXPOSE 8080
+ENTRYPOINT ./goapp
+</code></pre>
+
+<p><img src="https://ws1.sinaimg.cn/large/5c7eca16ly1fttidi7zanj20t303vglq.jpg" alt="" /></p>
+
+<p>While building this container, you may notice that the Dockerfile does strange things such as manually installing HTTPS certificates into the container. This is because the base Alpine Linux ships with almost nothing pre-installed. So even though you need to manually install any and all dependencies, the end result is super small containers!</p>
+
+<p>Note: If you want to save even more space, you could statically compile your app and use the “<a href="https://docs.docker.com/develop/develop-images/baseimages/#create-a-simple-parent-image-using-scratch">scratch</a>” container. Using “scratch” as a base container means you are literally starting from scratch with no base layer at all. However, I recommend using Alpine as your base image rather than “scratch” because the few extra MBs in the Alpine image make it much easier to use standard tools and install dependencies.</p>
+
+<h3 id="where-to-build-and-store-your-containers">Where to build and store your containers</h3>
+
+<p>In order to build and store the images, I highly recommend the combination of <a href="https://cloud.google.com/container-builder/">Google Container Builder</a> and <a href="https://cloud.google.com/container-registry/">Google Container Registry</a>.Container Builder is very fast and automatically pushes images to Container Registry. Most developers should easily get everything done in the free tier, and Container Registry is the same price as raw <a href="https://cloud.google.com/storage/">Google Cloud Storage</a> (cheap!).</p>
+
+<p>Platforms like <a href="https://cloud.google.com/kubernetes-engine/">Google Kubernetes Engine</a> can securely pull images from Google Container Registry without any additional configuration, making things easy for you!</p>
+
+<p>In addition, Container Registry gives you vulnerability scanning tools and <a href="https://cloud.google.com/iam/">IAM</a> support out of the box. These tools can make it easier for you to secure and lock down your containers.</p>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>The performance and security advantages of using small containers speak for themselves. Using a small base image and the “builder pattern” can make it easier to build small images, and there are many other techniques for individual stacks and programming languages to minimize container size as well. Whatever you do, you can be sure that your efforts to keep your containers small are well worth it!</p>
+
+
+    
+
+    
+
+
+</article>
+
+
+
+        </div>
+
+        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
+    
+        
+
+
+    
+    
+        <section>
+    
+        
+    
+        
+        <h4>Tags</h4>
+        <p>
+            
+            <a class="badge badge-primary" href="/tags/about">about</a>
+            
+            <a class="badge badge-primary" href="/tags/docker-images">docker-images</a>
+            
+        </p>
+        
+    
+</section>
+    
+</aside>
+
+      </div>
+    </div>
+    
+
+    
+      
+
+
+
+
+
+
+<footer class="blog-footer w-100">
+    <nav class="navbar navbar-light bg-light">
+        <p class="w-100 text-center">Copyright@yulianglu2010@gmail.com</p>
+        <p class="w-100 text-center"><a href="#">Back to top</a></p>
+    </nav>
+</footer>
+
+    
+
+    
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+  </body>
+</html>
