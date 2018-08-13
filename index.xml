@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>stay_here</title>
+    <title>get_calm_down_watching_the_lighting_stars_in_the_night</title>
     <link>http://ljosef.github.io/</link>
-    <description>Recent content on stay_here</description>
+    <description>Recent content on get_calm_down_watching_the_lighting_stars_in_the_night</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright@yulianglu2010@gmail.com</copyright>
@@ -36,7 +36,9 @@
       <pubDate>Tue, 31 Jul 2018 00:18:36 +0800</pubDate>
       
       <guid>http://ljosef.github.io/kubernetes-best-practices-terminating-with-grace/</guid>
-      <description></description>
+      <description>owner: Sandeep Dinesh, Developer Advocate
+When it comes to distributed systems, handling failure is key. Kubernetes helps with this by utilizing controllers that can watch the state of your system and restart services that have stopped performing. On the other hand, Kubernetes can often forcibly terminate your application as part of the normal operation of the system.
+In this episode of “Kubernetes Best Practices,” let’s take a look at how you can help Kubernetes do its job more efficiently and reduce the downtime your applications experience.</description>
     </item>
     
     <item>
