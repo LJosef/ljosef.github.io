@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright@yulianglu2010@gmail.com</copyright>
-    <lastBuildDate>Wed, 01 Aug 2018 00:39:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 13 Aug 2018 23:44:51 +0800</lastBuildDate>
     
 	<atom:link href="http://ljosef.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Kubernetes Best Practices Setting Up Health Checks With Readiness and Liveness Probes</title>
+      <link>http://ljosef.github.io/kubernetes-best-practices-setting-up-health-checks-with-readiness-and-liveness-probes/</link>
+      <pubDate>Mon, 13 Aug 2018 23:44:51 +0800</pubDate>
+      
+      <guid>http://ljosef.github.io/kubernetes-best-practices-setting-up-health-checks-with-readiness-and-liveness-probes/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Contact</title>
