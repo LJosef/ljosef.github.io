@@ -23,12 +23,6 @@
   </url>
   
   <url>
-    <loc>http://ljosef.github.io/tags/</loc>
-    <lastmod>2018-07-31T00:18:36+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>http://ljosef.github.io/tags/about/</loc>
     <lastmod>2018-08-01T00:38:00+08:00</lastmod>
     <priority>0</priority>
@@ -46,8 +40,14 @@
   </url>
   
   <url>
-    <loc>http://ljosef.github.io/tags/</loc>
+    <loc>http://ljosef.github.io/tags/graceful_terminating/</loc>
     <lastmod>2018-07-31T00:18:36+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://ljosef.github.io/tags/</loc>
+    <lastmod>2018-08-01T00:38:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
