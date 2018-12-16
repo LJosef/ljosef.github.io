@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://ljosef.github.io/23-design-patterns-in-practice/</loc>
+    <lastmod>2018-12-16T21:28:46+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://ljosef.github.io/7-best-practices-for-building-containers/</loc>
     <lastmod>2018-08-13T23:49:25+08:00</lastmod>
   </url>
@@ -50,6 +55,12 @@
   </url>
   
   <url>
+    <loc>http://ljosef.github.io/tags/factory-method/</loc>
+    <lastmod>2018-12-16T21:28:46+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://ljosef.github.io/tags/graceful_terminating/</loc>
     <lastmod>2018-07-31T00:18:36+08:00</lastmod>
     <priority>0</priority>
@@ -62,14 +73,20 @@
   </url>
   
   <url>
-    <loc>http://ljosef.github.io/tags/</loc>
-    <lastmod>2018-08-01T00:38:00+08:00</lastmod>
+    <loc>http://ljosef.github.io/</loc>
+    <lastmod>2018-12-16T21:28:46+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://ljosef.github.io/</loc>
-    <lastmod>2018-08-13T23:49:25+08:00</lastmod>
+    <loc>http://ljosef.github.io/tags/singleton/</loc>
+    <lastmod>2018-12-16T21:28:46+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://ljosef.github.io/tags/</loc>
+    <lastmod>2018-08-01T00:38:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   

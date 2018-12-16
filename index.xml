@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>get_calm_down_watching_the_lighting_stars_in_the_night</title>
+    <title>L</title>
     <link>http://ljosef.github.io/</link>
-    <description>Recent content on get_calm_down_watching_the_lighting_stars_in_the_night</description>
+    <description>Recent content on L</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright@yulianglu2010@gmail.com</copyright>
-    <lastBuildDate>Mon, 13 Aug 2018 23:49:25 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 16 Dec 2018 21:28:46 +0800</lastBuildDate>
     
 	<atom:link href="http://ljosef.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>23 Design Patterns in Practice</title>
+      <link>http://ljosef.github.io/23-design-patterns-in-practice/</link>
+      <pubDate>Sun, 16 Dec 2018 21:28:46 +0800</pubDate>
+      
+      <guid>http://ljosef.github.io/23-design-patterns-in-practice/</guid>
+      <description>By Yuliang, lu
+Singleton Definition Ensure a class has only one instance and provide a global point of access to it.
+Code public class Singleton{ private static final Singleton singleton = new Singleton(); private Singleton(){ }; public static Singleton getInstance(){ return singleton; } }  Scenarios  unique sequence number counter IO querying or db access  E.g. Beans in Spring
+Factory Method Definition Define an interface for creating an object, but let subclasses decide which class to initiate.</description>
+    </item>
     
     <item>
       <title>7 Best Practices for Building Containers</title>

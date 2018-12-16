@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on get_calm_down_watching_the_lighting_stars_in_the_night</title>
+    <title>Tags on L</title>
     <link>http://ljosef.github.io/tags/</link>
-    <description>Recent content in Tags on get_calm_down_watching_the_lighting_stars_in_the_night</description>
+    <description>Recent content in Tags on L</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright@yulianglu2010@gmail.com</copyright>
@@ -31,6 +31,15 @@
     </item>
     
     <item>
+      <title>Factory Method</title>
+      <link>http://ljosef.github.io/tags/factory-method/</link>
+      <pubDate>Sun, 16 Dec 2018 21:28:46 +0800</pubDate>
+      
+      <guid>http://ljosef.github.io/tags/factory-method/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Graceful_terminating</title>
       <link>http://ljosef.github.io/tags/graceful_terminating/</link>
       <pubDate>Tue, 31 Jul 2018 00:18:36 +0800</pubDate>
@@ -45,6 +54,15 @@
       <pubDate>Mon, 13 Aug 2018 23:44:51 +0800</pubDate>
       
       <guid>http://ljosef.github.io/tags/health_check/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Singleton</title>
+      <link>http://ljosef.github.io/tags/singleton/</link>
+      <pubDate>Sun, 16 Dec 2018 21:28:46 +0800</pubDate>
+      
+      <guid>http://ljosef.github.io/tags/singleton/</guid>
       <description></description>
     </item>
     
